@@ -92,28 +92,27 @@ A\}$.</p>
 </div>
 								
 <p>Let $X', Y'$ be random variables such that \[X'=X(1+\sigma\epsilon_1),\quad Y'=Y(1+\sigma\rho\epsilon_1+\sigma\gamma\epsilon_2)\] where $X,Y,\sigma, \rho,\gamma$ are constants, and $\epsilon_1,\epsilon_2$ are independent random variables which follow standard normal distribution, i.e. \[\epsilon_1,\epsilon_2\stackrel{i.i.d.}{\sim} N(0,1)\]</p>
-								<p><b>Definition 0.1  </b>Given two random variables $X$ and $Y$, the <b>covariance</b> between $X$ and $Y$ is defined as \[\cov(X,Y)=E[(X-E(X))(Y-E(Y))]=E(XY)-E(X)E(Y)\]</p>	
-								<p><b>Proposition 0.2  </b>\begin{enumerate}
-\item $\cov(X,X)=\var(X)$
-\item If $X$ and $Y$ are independent, then $\cov(X,Y)=0$
-\item $\cov(X,Y)=\cov(Y,X)$
-\item $\cov(aX,Y)=a\cov(X,Y)$ if $a$ is a constant.
-\item $\cov(X+c,Y)=\cov(X,Y)$ if $c$ is a constant.
-\item $\cov(X+Y,Z)=\cov(X,Z)+\cov(Y,Z)$
-\item Generally, \[\cov\left (\sum_{i=1}^m a_iX_i, \sum_{j=1}^n b_jY_j\right )=\sum_{i=1}^m\sum_{j=1}^n a_ib_j\cov(X_i,Y_j)\]
-\end{enumerate}</p>
+								<p><b>Definition 0.1</b>  Given two random variables $X$ and $Y$, the <b>covariance</b> between $X$ and $Y$ is defined as \[\cov(X,Y)=E[(X-E(X))(Y-E(Y))]=E(XY)-E(X)E(Y)\]</p>	
+								<p><b>Proposition 0.2</b><ol>
+								<li> $\cov(X,X)=\var(X)$ </li>
+								<li> If $X$ and $Y$ are independent, then $\cov(X,Y)=0$ </li>
+								<li> $\cov(X,Y)=\cov(Y,X)$ </li>
+								<li> $\cov(aX,Y)=a\cov(X,Y)$ if $a$ is a constant. </li>
+								<li> $\cov(X+c,Y)=\cov(X,Y)$ if $c$ is a constant. </li>
+								<li> $\cov(X+Y,Z)=\cov(X,Z)+\cov(Y,Z)$ </li>
+<li> Generally, \[\cov\left (\sum_{i=1}^m a_iX_i, \sum_{j=1}^n b_jY_j\right )=\sum_{i=1}^m\sum_{j=1}^n a_ib_j\cov(X_i,Y_j)\] </li></ol></p>
 								
-								<p><b>Proposition 0.3  </b>If $X$ and $Y$ are independent random variables, then $f(X)$ and $g(Y)$ are independent for any functions $f$ and $g$.</p>
+								<p><b>Proposition 0.3</b>  If $X$ and $Y$ are independent random variables, then $f(X)$ and $g(Y)$ are independent for any functions $f$ and $g$.</p>
 								
-								<p><b>Example 0.4  </b>Therefore,
-\begin{enumerate}
-\item $\cov(\epsilon_1,\epsilon_1)=\var(\epsilon_1)=1$
-\item $\cov(\epsilon_1^2,\epsilon_1^2)=\var(\epsilon_1^2)=2$
-\item $\cov(\epsilon_1\epsilon_2,\epsilon_1\epsilon_2)=\var(\epsilon_1\epsilon_2)=1$
-\item $\cov(\epsilon_1,\epsilon_2)=0$, $\cov(\epsilon_2,\epsilon_1^2)=0$
-\item Since $E(\epsilon_1^3)=0$, \[\cov(\epsilon_1,\epsilon_1^2)=E(\epsilon_1^3)-E(\epsilon_1)E(\epsilon_1^2)=0-0=0\]
-\item Since $\epsilon_1^2$ and $\epsilon_2$ are independent, \[\cov(\epsilon_1,\epsilon_1\epsilon_2)=E(\epsilon_1^2\epsilon_2)-E(\epsilon_1)E(\epsilon_1\epsilon_2)=E(\epsilon_1^2)E(\epsilon_2)-E(\epsilon_1)E(\epsilon_1\epsilon_2)=0-0=0\] 
-									\end{enumerate}</p>
+								<p><b>Example 0.4</b>  Therefore,
+<ol>
+	<li> $\cov(\epsilon_1,\epsilon_1)=\var(\epsilon_1)=1$ </li>
+	<li> $\cov(\epsilon_1^2,\epsilon_1^2)=\var(\epsilon_1^2)=2$ </li>
+	<li> $\cov(\epsilon_1\epsilon_2,\epsilon_1\epsilon_2)=\var(\epsilon_1\epsilon_2)=1$ </li>
+	<li> $\cov(\epsilon_1,\epsilon_2)=0$, $\cov(\epsilon_2,\epsilon_1^2)=0$ </li>
+<li> Since $E(\epsilon_1^3)=0$, \[\cov(\epsilon_1,\epsilon_1^2)=E(\epsilon_1^3)-E(\epsilon_1)E(\epsilon_1^2)=0-0=0\] </li>
+<li> Since $\epsilon_1^2$ and $\epsilon_2$ are independent, \[\cov(\epsilon_1,\epsilon_1\epsilon_2)=E(\epsilon_1^2\epsilon_2)-E(\epsilon_1)E(\epsilon_1\epsilon_2)=E(\epsilon_1^2)E(\epsilon_2)-E(\epsilon_1)E(\epsilon_1\epsilon_2)=0-0=0\]</li> 
+						</ol></p>
 								
 								<p><b>Example 0.5  </b>\[\var(X'Y')=X^2Y^2[\sigma^2(\rho+1)^2+\sigma^2\gamma^2+2\sigma^4\rho^2+\sigma^4\gamma^2]\]</p>
 								
