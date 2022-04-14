@@ -56,44 +56,20 @@
 								<!-- <span class="image main"><img src="images/casual profile pic.jpg" alt="" style="width: 25%; height: 25%" /></span> -->
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
 								<p>Making random stuff.</p>
-								<p>This page is for testing MathJax in my blog.  I wrote some custom
-shorthand like $\zeros \in \R^n$.</p>
 
-<h2>Problem</h2>
+							</article>
 
-<p>For sequences of numbers, <em>limit inferior</em> and <em>limit
-superior</em> are defined as $\liminf (a_n):=\sup\{\inf\{a_k:k \ge
-n\}\}$ and $\limsup (a_n):=\inf\{\sup\{a_k:k \ge n\}\}$ respectively;
-for sequences of sets, they are defined as $\displaystyle
-\bigcup_{n=1}^{\infty} \bigcap_{k=n}^{\infty} A_k$ and $\displaystyle
-\bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} A_k$ respectively.</p>
-
-<p><strong>Why are they consistent?</strong></p>
-
-<h2>Discussion</h2>
-
-<p>It suffices to find a relation between '&lt;' and '&sube;': $\{x
-\le a\} \subseteq \{x \le b\} \iff a \le b$.</p>
-
-<p>Claim: $\displaystyle \bigcup_{a \in A} \{x \le a\} = \{x \le \sup
-A\}$.</p>
-
-<p><em>Proof</em>:</p>
-
-<div class="myeqn">
-\[
-  \begin{aligned}
-    & x \in \bigcup_{a \in A} \{x \le a\} \\
-    \iff& x \le a \;\forall a \in A \\
-    \iff& x \text{ is a lower bound of } A \\
-    \iff& x \le \inf A
-  \end{aligned}
-\]
-</div>
-								
+						<!-- Work -->
+							<article id="work">
+								<h2 class="major">Work</h2>
+								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
+								<p>The random stuff.</p>
+								<!-- <p>The math I worked on during 2016-2018: <a href="files/thesis.pdf" target="_blank">Download</a></p> -->
+								<h3>1. Computaion of some variance</h3>		
 <p>Let $X', Y'$ be random variables such that \[X'=X(1+\sigma\epsilon_1),\quad Y'=Y(1+\sigma\rho\epsilon_1+\sigma\gamma\epsilon_2)\] where $X,Y,\sigma, \rho,\gamma$ are constants, and $\epsilon_1,\epsilon_2$ are independent random variables which follow standard normal distribution, i.e. \[\epsilon_1,\epsilon_2\stackrel{i.i.d.}{\sim} N(0,1)\]</p>
-								<p><b>Definition 0.1</b>  Given two random variables $X$ and $Y$, the <b>covariance</b> between $X$ and $Y$ is defined as \[\cov(X,Y)=E[(X-E(X))(Y-E(Y))]=E(XY)-E(X)E(Y)\]</p>	
-								<p><b>Proposition 0.2</b><ol>
+								<p><b>Definition 1.1</b></p>
+								<p> Given two random variables $X$ and $Y$, the <b>covariance</b> between $X$ and $Y$ is defined as \[\cov(X,Y)=E[(X-E(X))(Y-E(Y))]=E(XY)-E(X)E(Y)\]</p>	
+								<p><b>Proposition 1.2</b><ol>
 								<li> $\cov(X,X)=\var(X)$ </li>
 								<li> If $X$ and $Y$ are independent, then $\cov(X,Y)=0$ </li>
 								<li> $\cov(X,Y)=\cov(Y,X)$ </li>
@@ -101,10 +77,11 @@ A\}$.</p>
 								<li> $\cov(X+c,Y)=\cov(X,Y)$ if $c$ is a constant. </li>
 								<li> $\cov(X+Y,Z)=\cov(X,Z)+\cov(Y,Z)$ </li>
 <li> Generally, \[\cov\left (\sum_{i=1}^m a_iX_i, \sum_{j=1}^n b_jY_j\right )=\sum_{i=1}^m\sum_{j=1}^n a_ib_j\cov(X_i,Y_j)\] </li></ol></p>
+						
+								<p><b>Proposition 1.3</b></p>
+								<p>If $X$ and $Y$ are independent random variables, then $f(X)$ and $g(Y)$ are independent for any functions $f$ and $g$.</p>
 								
-								<p><b>Proposition 0.3</b>  If $X$ and $Y$ are independent random variables, then $f(X)$ and $g(Y)$ are independent for any functions $f$ and $g$.</p>
-								
-								<p><b>Example 0.4</b>  Therefore,
+								<p><b>Example 1.4</b>  Therefore,
 <ol>
 	<li> $\cov(\epsilon_1,\epsilon_1)=\var(\epsilon_1)=1$ </li>
 	<li> $\cov(\epsilon_1^2,\epsilon_1^2)=\var(\epsilon_1^2)=2$ </li>
@@ -113,8 +90,8 @@ A\}$.</p>
 <li> Since $E(\epsilon_1^3)=0$, \[\cov(\epsilon_1,\epsilon_1^2)=E(\epsilon_1^3)-E(\epsilon_1)E(\epsilon_1^2)=0-0=0\] </li>
 <li> Since $\epsilon_1^2$ and $\epsilon_2$ are independent, \[\cov(\epsilon_1,\epsilon_1\epsilon_2)=E(\epsilon_1^2\epsilon_2)-E(\epsilon_1)E(\epsilon_1\epsilon_2)=E(\epsilon_1^2)E(\epsilon_2)-E(\epsilon_1)E(\epsilon_1\epsilon_2)=0-0=0\]</li> 
 						</ol></p>
-								
-								<p><b>Example 0.5  </b>\[\var(X'Y')=X^2Y^2[\sigma^2(\rho+1)^2+\sigma^2\gamma^2+2\sigma^4\rho^2+\sigma^4\gamma^2]\]</p>
+								<p><b>Example 1.5</b></p>
+								<p>\[\var(X'Y')=X^2Y^2[\sigma^2(\rho+1)^2+\sigma^2\gamma^2+2\sigma^4\rho^2+\sigma^4\gamma^2]\]</p>
 								
 <p><em>Proof</em>:</p>
 								
@@ -131,16 +108,10 @@ A\}$.</p>
 &=X^2Y^2[\sigma^2(\rho+1)^2+\sigma^2\gamma^2+2\sigma^4\rho^2+\sigma^4\gamma^2+0+0+0+0+0+0]\\
 &=X^2Y^2[\sigma^2(\rho+1)^2+\sigma^2\gamma^2+2\sigma^4\rho^2+\sigma^4\gamma^2]
 									\end{align*}</p>
-									
-				<p><b>Example 0.6</b> If $X=8.4, Y=1/7, \sigma=0.15, \rho=0.6, \gamma=\sqrt{1-\rho^2}=0.8$, then \[\var(X'Y')=0.10467144\]</p>
-							</article>
-
-						<!-- Work -->
-							<article id="work">
-								<h2 class="major">Work</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>The random stuff.</p>
-								<!-- <p>The math I worked on during 2016-2018: <a href="files/thesis.pdf" target="_blank">Download</a></p> -->
+				<p><b>Example 0.6</b></p>
+				<p>If $X=8.4, Y=1/7, \sigma=0.15, \rho=0.6, \gamma=\sqrt{1-\rho^2}=0.8$, then \[\var(X'Y')=0.10467144\]</p>
+								
+								
 							</article>
 
 						<!-- About -->
