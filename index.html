@@ -71,6 +71,9 @@
 								
 								
 <p>Let $X', Y'$ be random variables such that \[X'=X(1+\sigma\epsilon_1),\quad Y'=Y(1+\sigma\rho\epsilon_1+\sigma\gamma\epsilon_2)\] where $X,Y,\sigma, \rho,\gamma$ are constants, and $\epsilon_1,\epsilon_2$ are independent random variables which follow standard normal distribution, i.e. \[\epsilon_1,\epsilon_2\stackrel{i.i.d.}{\sim} N(0,1)\]</p>
+								
+								
+								
 								<p><b>Definition 1.1</b></p>
 								<p> Given two random variables $X$ and $Y$, the <b>covariance</b> between $X$ and $Y$ is defined as \[\cov(X,Y)=E[(X-E(X))(Y-E(Y))]=E(XY)-E(X)E(Y)\]</p>	
 								<p><b>Proposition 1.2</b><ol>
@@ -96,6 +99,8 @@
 <li> Since $\epsilon_1^2$ and $\epsilon_2$ are independent, \[\cov(\epsilon_1,\epsilon_1\epsilon_2)=E(\epsilon_1^2\epsilon_2)-E(\epsilon_1)E(\epsilon_1\epsilon_2)=E(\epsilon_1^2)E(\epsilon_2)-E(\epsilon_1)E(\epsilon_1\epsilon_2)=0-0=0\]</li> 
 						</ol></p>
 								<p><b>Example 1.5</b></p>
+								
+								
 								<p>\[\var(X'Y')=X^2Y^2[\sigma^2(\rho+1)^2+\sigma^2\gamma^2+2\sigma^4\rho^2+\sigma^4\gamma^2]\]</p>
 								
 <p><em>Proof</em>:</p>
@@ -114,7 +119,10 @@
 &=X^2Y^2[\sigma^2(\rho+1)^2+\sigma^2\gamma^2+2\sigma^4\rho^2+\sigma^4\gamma^2]
 									\end{align*}</p>
 				<p><b>Example 0.6</b></p>
-				<p>If $X=8.4, Y=1/7, \sigma=0.15, \rho=0.6, \gamma=\sqrt{1-\rho^2}=0.8$, then \[\var(X'Y')=0.10467144\]</p>
+				<p>In real life application, for example we can let $X$ be the initial value of EUR to CNY exchange rate
+								(i.e. the number of CNY for 1 EUR) and Y be the initital value of CNY to USD exchange rate. Then in this case, $\rho$ is the correlation coefficient
+									between these two exhcange rates, while we have a constraint $\rho^2+\gamma^2=1$. Then we calculate the variance of EUR to USD exchange rate.</p>
+				<p>Let $X=8.4, Y=1/7, \sigma=0.15, \rho=0.6, \gamma=\sqrt{1-\rho^2}=0.8$, then \[\var(X'Y')=0.10467144\]</p>
 								
 								
 							</article>
