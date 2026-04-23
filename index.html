@@ -71,27 +71,8 @@
 								<h2 class="major">Work</h2>
 								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
 								<p></p>
-								
-								
-								<h3>2. What is Liouvillian function?</h3>
-								
-								<p><b>Liouvillian function</b> is a function that can be obtained from rational functions by a finite process of exponentiations, integrations and algebraic functions. 
-								For example, $\exp(\dfrac{2x}{5x^2-2}), \log(x):=\int \frac{1}{x}, \dfrac{\sqrt{1+x^3}}{x^{3/7}-x^{1/3}}$ are all Liouvillian functions. Note that all variables here can be complex variables.</p>
-									
-								<p>One natural question arised in mathematics is: whether an ordinary differential equation has a Liouvillian function as a solution? It's because the solution is so "nice" that it doesn't require any numerical approximations. 
-									If that's the case, we call that <b>Liouvillian solution</b>. </p>
-									
-								<p>For instance, the differential equation $y'-2y=0$ has a Liouvillian solution $y=\exp(2x)$. Then, how about other differential equations with more complexity? Indeed, one can 
-								show that the equation \[y''-\dfrac{\xi^2 x^4-8\xi x^3+2(-\xi^2-8)x^2-8\xi x+\xi^2}{64x^4}y=0\] has a Liouvillian solution 
-									\[y=\sqrt{x}\exp(-\dfrac{\xi}{8}(\dfrac{1}{x}+x))\] by using a technique called <b>Kovacic's algorithm</b>. This algorithm also allows us to
-									ensure certain differential equation has no Liouvillian solution. For example, the following one
-									\[y''-\dfrac{x^5+1}{x^2(x-1)^2(x-2)^2}y=0\] has no Liouvillian solution.</p>
-									
-								<p>Interested readers can find more information in the paper <a href="images/final version.pdf"><i>Liouvillian solutions of Whittaker-Ince equation.</i> J. Symb. Comput. <b>115</b> (2023), 18-38.</a>  
-					
-								
-								
-								<h3>1. Computaion of some variance</h3>		
+
+																<h3>2. Computaion of some variance</h3>		
 								
 								
 <p>Let $X', Y'$ be random variables such that \[X'=X(1+\sigma\epsilon_1),\quad Y'=Y(1+\sigma\rho\epsilon_1+\sigma\gamma\epsilon_2)\] where $X,Y,\sigma, \rho,\gamma$ are constants, and $\epsilon_1,\epsilon_2$ are independent random variables which follow standard normal distribution, i.e. \[\epsilon_1,\epsilon_2\stackrel{i.i.d.}{\sim} N(0,1)\]</p>
@@ -147,6 +128,26 @@
 								(i.e. the number of CNY for 1 EUR) and $Y$ be the initital value of CNY to USD exchange rate, hence our random variable $X'Y'$ will be the exchange rate of EUR to USD. In this case, $\rho$ is the correlation coefficient
 									between these two exhcange rates, while having a constraint that $\rho^2+\gamma^2=1$. So now we can calculate the variance of EUR to USD exchange rate.</p>
 				<p>Let $X=8.4, Y=1/7, \sigma=0.15, \rho=0.6, \gamma=\sqrt{1-\rho^2}=0.8$, then \[\var(X'Y')=0.10467144\]</p>
+								
+								<h3>1. Some Paper</h3>
+								
+					<!--			<p><b>Liouvillian function</b> is a function that can be obtained from rational functions by a finite process of exponentiations, integrations and algebraic functions. 
+								For example, $\exp(\dfrac{2x}{5x^2-2}), \log(x):=\int \frac{1}{x}, \dfrac{\sqrt{1+x^3}}{x^{3/7}-x^{1/3}}$ are all Liouvillian functions. Note that all variables here can be complex variables.</p>
+									
+								<p>One natural question arised in mathematics is: whether an ordinary differential equation has a Liouvillian function as a solution? It's because the solution is so "nice" that it doesn't require any numerical approximations. 
+									If that's the case, we call that <b>Liouvillian solution</b>. </p>
+									
+								<p>For instance, the differential equation $y'-2y=0$ has a Liouvillian solution $y=\exp(2x)$. Then, how about other differential equations with more complexity? Indeed, one can 
+								show that the equation \[y''-\dfrac{\xi^2 x^4-8\xi x^3+2(-\xi^2-8)x^2-8\xi x+\xi^2}{64x^4}y=0\] has a Liouvillian solution 
+									\[y=\sqrt{x}\exp(-\dfrac{\xi}{8}(\dfrac{1}{x}+x))\] by using a technique called <b>Kovacic's algorithm</b>. This algorithm also allows us to
+									ensure certain differential equation has no Liouvillian solution. For example, the following one
+									\[y''-\dfrac{x^5+1}{x^2(x-1)^2(x-2)^2}y=0\] has no Liouvillian solution.</p>
+					-->				
+								<p>Here it is: <a href="images/final version.pdf"><i>Liouvillian solutions of Whittaker-Ince equation.</i> J. Symb. Comput. <b>115</b> (2023), 18-38.</a>  
+					
+								
+								
+
 								
 								
 							</article>
