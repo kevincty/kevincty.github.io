@@ -25,12 +25,13 @@
     }
 
     #bird-container {
-      position: absolute;
+      position: fixed; /* Fixed relative to screen viewport */
       top: 0;
       left: 0;
       pointer-events: none; /* Prevents bird from interfering with mouse clicks */
       transform: translate(-50%, -50%);
       will-change: transform;
+	  z-index: 99999; /* Higher than HTML5 UP elements and background */
     }
 
     /* Flapping Wing Animation */
