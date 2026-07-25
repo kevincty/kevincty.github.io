@@ -15,8 +15,56 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="icon" href="" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #1a1c29, #0d0e15);
+      overflow: hidden;
+      cursor: crosshair;
+    }
+
+    #bird-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none; /* Prevents bird from interfering with mouse clicks */
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+
+    /* Flapping Wing Animation */
+    .wing {
+      transform-origin: 50px 50px;
+      animation: flap 0.35s infinite alternate ease-in-out;
+    }
+
+    @keyframes flap {
+      0% {
+        transform: scaleY(1);
+      }
+      100% {
+        transform: scaleY(-0.3);
+      }
+    }
+  </style>
 	</head>
 	<body class="is-preload">
+		<!-- SVG Bird -->
+  <div id="bird-container">
+    <svg width="60" height="60" viewBox="0 0 100 100" fill="none">
+      <!-- Body -->
+      <path d="M20,50 Q50,30 80,50 Q50,60 20,50" fill="#4fc3f7" />
+      <!-- Left Wing -->
+      <path class="wing" d="M45,45 Q20,10 5,25 Q30,40 45,45" fill="#29b6f6" />
+      <!-- Right Wing -->
+      <path class="wing" d="M55,45 Q80,10 95,25 Q70,40 55,45" fill="#0288d1" />
+      <!-- Tail -->
+      <path d="M15,50 L5,42 L10,50 L5,58 Z" fill="#0288d1" />
+      <!-- Beak -->
+      <polygon points="80,48 90,50 80,52" fill="#ffa726" />
+    </svg>
+  </div>
 		<div style="display:none">
   $\DeclareMathOperator{\cov}{Cov}
    \DeclareMathOperator{\var}{Var}
@@ -428,6 +476,46 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+		<script>
+    const bird = document.getElementById('bird-container');
+
+    // Target coordinates (mouse position)
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    // Current bird coordinates
+    let birdX = mouseX;
+    let birdY = mouseY;
+
+    // Track mouse movement
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Smooth physics loop
+    function animate() {
+      // Linear Interpolation (lerp) for natural trailing movement
+      // Change 0.05 to a lower number for a slower trailing effect, higher for faster
+      const speed = 0.05;
+      
+      const dx = mouseX - birdX;
+      const dy = mouseY - birdY;
+
+      birdX += dx * speed;
+      birdY += dy * speed;
+
+      // Calculate rotation angle in degrees based on movement direction
+      const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+      // Apply transform to position and rotate the bird toward the mouse
+      bird.style.transform = `translate(${birdX}px, ${birdY}px) rotate(${angle}deg)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 	</body>
 </html>
 
