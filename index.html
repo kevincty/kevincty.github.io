@@ -606,12 +606,17 @@ function animate() {
   const NORMAL_FLAP_SPEED = 0.35;
   let flapDuration = NORMAL_FLAP_SPEED;
 
-  if (birdSpeed > 0.5) {
-    flapDuration = Math.max(0.22, NORMAL_FLAP_SPEED - birdSpeed * 0.005);
-  }
+  // Flap Speed Logic:
+  // Base rate = 1.0 (cruising / slow movement)
+  // Faster movement increases rate gradually up to ~1.6x max
+  const targetRate = 1.0 + Math.min(0.6, birdSpeed * 0.03);
 
+  // Smoothly set playback rate on running CSS Web Animations
   wings.forEach(wing => {
-    wing.style.animationDuration = `${flapDuration}s`;
+    const animations = wing.getAnimations();
+    animations.forEach(anim => {
+      anim.playbackRate = targetRate;
+    });
   });
 
   // Heading angle calculation
