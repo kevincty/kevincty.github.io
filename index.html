@@ -504,11 +504,17 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
       birdX += dx * speed;
       birdY += dy * speed;
 
-      // Calculate rotation angle in degrees based on movement direction
-      const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+		  // Calculate angle in degrees
+		  let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+		  // Horizontal Flip: If facing left (between 90° and 270° or -90°), invert vertically to keep upright
+		  let flipY = 1;
+		  if (Math.abs(angle) > 90) {
+		    flipY = -1;
+		  }
 
       // Apply transform to position and rotate the bird toward the mouse
-      bird.style.transform = `translate(${birdX}px, ${birdY}px) rotate(${angle}deg)`;
+      bird.style.transform = `translate(${birdX}px, ${birdY}px) rotate(${angle}deg) scaleY(${flipY})`;
 
       requestAnimationFrame(animate);
     }
