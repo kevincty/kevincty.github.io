@@ -502,130 +502,145 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-		<script>
-    const bird = document.getElementById('bird-container');
+<script>
+const bird = document.getElementById('bird-container');
+const wings = bird.querySelectorAll('.wing');
 
-					const wings = bird.querySelectorAll('.wing');
+let targetX = window.innerWidth / 2;
+let targetY = window.innerHeight / 2;
 
-		let mouseX = window.innerWidth / 2;
-		let mouseY = window.innerHeight / 2;
-		let prevMouseX = mouseX;
-		let prevMouseY = mouseY;
+let birdX = targetX;
+let birdY = targetY;
+let prevBirdX = birdX;
+let prevBirdY = birdY;
 
-		let birdX = mouseX;
-		let birdY = mouseY;
-		
-		// Randomized feather spawn threshold
-		let featherCounter = 0;
-		let nextFeatherTrigger = 12 + Math.floor(Math.random() * 15);
+// Randomized feather spawn threshold
+let featherCounter = 0;
+let nextFeatherTrigger = 12 + Math.floor(Math.random() * 15);
 
-		window.addEventListener('mousemove', (e) => {
-		  mouseX = e.clientX;
-		  mouseY = e.clientY;
-		});
+// Handle Mouse Events
+window.addEventListener('mousemove', (e) => {
+  targetX = e.clientX;
+  targetY = e.clientY;
+});
 
-		// Spawn feather directly below the bird's belly / lower body
-		function dropFeather(birdX, birdY, angleRad, flipY) {
-		  const feather = document.createElement('div');
-		  feather.className = 'feather';
+// Handle Touch Events (Mobile Support)
+window.addEventListener('touchmove', (e) => {
+  if (e.touches.length > 0) {
+    targetX = e.touches[0].clientX;
+    targetY = e.touches[0].clientY;
+  }
+}, { passive: true });
 
-		  // Calculate bottom offset vector perpendicular to the bird's orientation
-		  const perpendicularAngle = angleRad + (Math.PI / 2) * flipY;
-		  const bellyDistance = 14; // pixels below bird center
+window.addEventListener('touchstart', (e) => {
+  if (e.touches.length > 0) {
+    targetX = e.touches[0].clientX;
+    targetY = e.touches[0].clientY;
+  }
+}, { passive: true });
 
-		  const spawnX = birdX + Math.cos(perpendicularAngle) * bellyDistance;
-		  const spawnY = birdY + Math.sin(perpendicularAngle) * bellyDistance;
+// Spawn feather directly below the bird's belly / lower body
+function dropFeather(bX, bY, angleRad, flipY) {
+  const feather = document.createElement('div');
+  feather.className = 'feather';
 
-		  feather.style.left = `${spawnX}px`;
-		  feather.style.top = `${spawnY}px`;
+  // Calculate bottom offset vector perpendicular to the bird's orientation
+  const perpendicularAngle = angleRad + (Math.PI / 2) * flipY;
+  const bellyDistance = 14; // pixels below bird center
 
-		  const sway1 = (Math.random() > 0.5 ? 1 : -1) * (12 + Math.random() * 25);
-		  const sway2 = -sway1 * (0.5 + Math.random() * 0.5);
-		  const initialRot = Math.random() * 360;
-		  const rotDelta = 20 + Math.random() * 40;
-		  const fallDur = (1.8 + Math.random() * 1.0).toFixed(2);
-		  const initScale = (0.7 + Math.random() * 0.5).toFixed(2);
-		  const dropOffset = (Math.random() * 20 - 10).toFixed(1);
+  const spawnX = bX + Math.cos(perpendicularAngle) * bellyDistance;
+  const spawnY = bY + Math.sin(perpendicularAngle) * bellyDistance;
 
-		  feather.style.setProperty('--sway-1', `${sway1}px`);
-		  feather.style.setProperty('--sway-2', `${sway2}px`);
-		  feather.style.setProperty('--init-rot', `${initialRot}deg`);
-		  feather.style.setProperty('--rot-delta', `${rotDelta}deg`);
-		  feather.style.setProperty('--fall-dur', `${fallDur}s`);
-		  feather.style.setProperty('--init-scale', initScale);
-		  feather.style.setProperty('--drop-offset', `${dropOffset}px`);
+  feather.style.left = `${spawnX}px`;
+  feather.style.top = `${spawnY}px`;
 
-		  feather.innerHTML = `
-		    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-		      <path d="M12,2 C17,6 20,15 12,22 C10,15 7,8 12,2 Z" fill="#81d4fa" opacity="0.9"/>
-		      <path d="M12,2 Q12,12 12,22" stroke="#e0f7fa" stroke-width="1" opacity="0.95"/>
-		    </svg>
-		  `;
+  const sway1 = (Math.random() > 0.5 ? 1 : -1) * (12 + Math.random() * 25);
+  const sway2 = -sway1 * (0.5 + Math.random() * 0.5);
+  const initialRot = Math.random() * 360;
+  const rotDelta = 20 + Math.random() * 40;
+  const fallDur = (1.8 + Math.random() * 1.0).toFixed(2);
+  const initScale = (0.7 + Math.random() * 0.5).toFixed(2);
+  const dropOffset = (Math.random() * 20 - 10).toFixed(1);
 
-		  document.body.appendChild(feather);
+  feather.style.setProperty('--sway-1', `${sway1}px`);
+  feather.style.setProperty('--sway-2', `${sway2}px`);
+  feather.style.setProperty('--init-rot', `${initialRot}deg`);
+  feather.style.setProperty('--rot-delta', `${rotDelta}deg`);
+  feather.style.setProperty('--fall-dur', `${fallDur}s`);
+  feather.style.setProperty('--init-scale', initScale);
+  feather.style.setProperty('--drop-offset', `${dropOffset}px`);
 
-		  setTimeout(() => feather.remove(), parseFloat(fallDur) * 1000);
-		}
+  feather.innerHTML = `
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+      <path d="M12,2 C17,6 20,15 12,22 C10,15 7,8 12,2 Z" fill="#81d4fa" opacity="0.9"/>
+      <path d="M12,2 Q12,12 12,22" stroke="#e0f7fa" stroke-width="1" opacity="0.95"/>
+    </svg>
+  `;
 
-		function animate() {
-		  const speed = 0.06;
+  document.body.appendChild(feather);
 
-		  // Calculate mouse displacement this frame
-		  const mdx = mouseX - prevMouseX;
-		  const mdy = mouseY - prevMouseY;
-		  const cursorSpeed = Math.sqrt(mdx * mdx + mdy * mdy);
-		  prevMouseX = mouseX;
-		  prevMouseY = mouseY;
+  setTimeout(() => feather.remove(), parseFloat(fallDur) * 1000);
+}
 
-		  // Bird position tracking
-		  const dx = mouseX - birdX;
-		  const dy = mouseY - birdY;
+function animate() {
+  const speed = 0.06;
 
-		  birdX += dx * speed;
-		  birdY += dy * speed;
+  // Track position towards target
+  const dx = targetX - birdX;
+  const dy = targetY - birdY;
 
-		  // Flap Speed Logic:
-		  // - Cursor moving: Speeds up moderately (floored at 0.22s)
-		  // - Cursor stopped: Relaxes back to gentle 0.35s cruise speed
-		  const NORMAL_FLAP_SPEED = 0.35;
-		  let flapDuration = NORMAL_FLAP_SPEED;
+  birdX += dx * speed;
+  birdY += dy * speed;
 
-		  if (cursorSpeed > 0.5) {
-		    flapDuration = Math.max(0.22, NORMAL_FLAP_SPEED - cursorSpeed * 0.005);
-		  }
+  // Calculate actual bird movement speed this frame
+  const bdx = birdX - prevBirdX;
+  const bdy = birdY - prevBirdY;
+  const birdSpeed = Math.sqrt(bdx * bdx + bdy * bdy);
+  
+  prevBirdX = birdX;
+  prevBirdY = birdY;
 
-		  wings.forEach(wing => {
-		    wing.style.animationDuration = `${flapDuration}s`;
-		  });
+  // Flap Speed Logic based on BIRD SPEED (works on desktop & mobile):
+  // - Fast bird movement: Flaps quickly (floored at 0.22s)
+  // - Arrived / Resting: Relaxes back to 0.35s cruise speed
+  const NORMAL_FLAP_SPEED = 0.35;
+  let flapDuration = NORMAL_FLAP_SPEED;
 
-		  // Calculate heading angle
-		  const angleRad = Math.atan2(dy, dx);
-		  let angle = angleRad * (180 / Math.PI);
+  if (birdSpeed > 0.5) {
+    flapDuration = Math.max(0.22, NORMAL_FLAP_SPEED - birdSpeed * 0.005);
+  }
 
-		  // Horizontal Flip
-		  let flipY = 1;
-		  if (Math.abs(angle) > 90) {
-		    flipY = -1;
-		  }
+  wings.forEach(wing => {
+    wing.style.animationDuration = `${flapDuration}s`;
+  });
 
-		  bird.style.transform = `translate(${birdX}px, ${birdY}px) rotate(${angle}deg) scaleY(${flipY})`;
+  // Heading angle calculation
+  const angleRad = Math.atan2(dy, dx);
+  let angle = angleRad * (180 / Math.PI);
 
-		  // Drop feathers from under the bird's body while moving
-		  if (cursorSpeed > 4) {
-		    featherCounter++;
-		    if (featherCounter >= nextFeatherTrigger) {
-		      dropFeather(birdX, birdY, angleRad, flipY);
-		      featherCounter = 0;
-		      nextFeatherTrigger = 10 + Math.floor(Math.random() * 20);
-		    }
-		  }
+  // Horizontal Flip
+  let flipY = 1;
+  if (Math.abs(angle) > 90) {
+    flipY = -1;
+  }
 
-		  requestAnimationFrame(animate);
-		}
+  bird.style.transform = `translate(${birdX}px, ${birdY}px) rotate(${angle}deg) scaleY(${flipY})`;
 
-		animate();
-    
-  </script>
+  // Drop feathers whenever bird is actually moving across screen
+  if (birdSpeed > 4) {
+    featherCounter++;
+    if (featherCounter >= nextFeatherTrigger) {
+      dropFeather(birdX, birdY, angleRad, flipY);
+      featherCounter = 0;
+      nextFeatherTrigger = 10 + Math.floor(Math.random() * 20);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
 	</body>
 </html>
 
