@@ -486,6 +486,21 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				<!-- Footer -->
 					<footer id="footer">
+						<div style="margin-bottom: 1em; text-align: center;">
+							<audio id="bg-music" src="radio.mp3" preload="metadata"></audio>
+							<button id="play-music-btn" type="button" style="
+								background: rgba(255,255,255,0.15);
+								border: 1px solid rgba(255,255,255,0.4);
+								color: #fff;
+								padding: 0.5em 1.2em;
+								border-radius: 2em;
+								cursor: pointer;
+								font-size: 0.9em;
+								transition: background 0.2s, border-color 0.2s;
+							">
+								▶ Play Music
+							</button>
+						</div>
 						<p class="copyright">Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 						<a href="https://info.flagcounter.com/HIIS"><img src="https://s01.flagcounter.com/count2/HIIS/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
 					</footer>
@@ -645,10 +660,50 @@ function animate() {
 }
 
 animate();
+
+// Music player controls
+(function() {
+  const audio = document.getElementById('bg-music');
+  const btn = document.getElementById('play-music-btn');
+  if (!audio || !btn) return;
+
+  let isPlaying = false;
+
+  btn.addEventListener('click', function() {
+    if (isPlaying) {
+      audio.pause();
+      btn.textContent = '▶ Play Music';
+      isPlaying = false;
+    } else {
+      audio.play().then(() => {
+        btn.textContent = '⏸ Pause Music';
+        isPlaying = true;
+      }).catch(err => {
+        console.warn('Playback failed:', err);
+        btn.textContent = '▶ Play Music';
+        isPlaying = false;
+      });
+    }
+  });
+
+  audio.addEventListener('ended', function() {
+    btn.textContent = '▶ Play Music';
+    isPlaying = false;
+  });
+
+  // Optional: hover style via JS for consistency
+  btn.addEventListener('mouseenter', function() {
+    this.style.background = 'rgba(255,255,255,0.25)';
+    this.style.borderColor = 'rgba(255,255,255,0.7)';
+  });
+  btn.addEventListener('mouseleave', function() {
+    this.style.background = 'rgba(255,255,255,0.15)';
+    this.style.borderColor = 'rgba(255,255,255,0.4)';
+  });
+})();
 </script>
 	</body>
 </html>
-
 
 
 
