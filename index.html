@@ -88,8 +88,6 @@
 			border: none;
 			background: transparent;
 			color: #fff;
-			font-size: 18px;
-			line-height: 1;
 			cursor: pointer;
 			display: flex;
 			align-items: center;
@@ -97,7 +95,9 @@
 			padding: 0;
 			opacity: 0.85;
 			transition: opacity 0.2s, transform 0.15s;
-		">▶</button>
+		">
+			<span style="font-size: 22px; line-height: 1; display: flex; align-items: center; justify-content: center;">♫</span>
+		</button>
 
 		<!-- SVG Bird -->
   <div id="bird-container">
@@ -675,11 +675,17 @@ animate();
   const btn = document.getElementById('play-music-btn');
   if (!audio || !btn) return;
 
+  const ICON_NOTE = `<span style="font-size: 22px; line-height: 1; display: flex; align-items: center; justify-content: center;">♫</span>`;
+  const ICON_PAUSE = `
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="display:block; margin:auto;">
+      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+    </svg>`;
+
   let isPlaying = false;
 
   function setPlaying(playing) {
     isPlaying = playing;
-    btn.textContent = playing ? '⏸' : '▶';
+    btn.innerHTML = playing ? ICON_PAUSE : ICON_NOTE;
     btn.setAttribute('aria-label', playing ? 'Pause music' : 'Play music');
   }
 
