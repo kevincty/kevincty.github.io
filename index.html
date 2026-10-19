@@ -76,6 +76,29 @@
   </style>
 	</head>
 	<body class="is-preload">
+		<!-- Music Player (top-left corner) -->
+		<audio id="bg-music" src="radio.mp3" preload="metadata"></audio>
+		<button id="play-music-btn" type="button" title="Play / Pause music" aria-label="Play music" style="
+			position: fixed;
+			top: 16px;
+			left: 16px;
+			z-index: 100000;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			border: 1px solid rgba(255,255,255,0.35);
+			background: rgba(0,0,0,0.45);
+			color: #fff;
+			font-size: 16px;
+			line-height: 1;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: background 0.2s, border-color 0.2s, transform 0.15s;
+			backdrop-filter: blur(4px);
+		">▶</button>
+
 		<!-- SVG Bird -->
   <div id="bird-container">
     <svg width="60" height="60" viewBox="0 0 100 100" fill="none">
@@ -645,6 +668,50 @@ function animate() {
 }
 
 animate();
+
+// Music player controls (icon-only, top-left)
+(function() {
+  const audio = document.getElementById('bg-music');
+  const btn = document.getElementById('play-music-btn');
+  if (!audio || !btn) return;
+
+  let isPlaying = false;
+
+  function setPlaying(playing) {
+    isPlaying = playing;
+    btn.textContent = playing ? '⏸' : '▶';
+    btn.setAttribute('aria-label', playing ? 'Pause music' : 'Play music');
+  }
+
+  btn.addEventListener('click', function() {
+    if (isPlaying) {
+      audio.pause();
+      setPlaying(false);
+    } else {
+      audio.play().then(() => {
+        setPlaying(true);
+      }).catch(err => {
+        console.warn('Playback failed:', err);
+        setPlaying(false);
+      });
+    }
+  });
+
+  audio.addEventListener('ended', function() {
+    setPlaying(false);
+  });
+
+  btn.addEventListener('mouseenter', function() {
+    this.style.background = 'rgba(255,255,255,0.22)';
+    this.style.borderColor = 'rgba(255,255,255,0.6)';
+    this.style.transform = 'scale(1.08)';
+  });
+  btn.addEventListener('mouseleave', function() {
+    this.style.background = 'rgba(0,0,0,0.45)';
+    this.style.borderColor = 'rgba(255,255,255,0.35)';
+    this.style.transform = 'scale(1)';
+  });
+})();
 </script>
 	</body>
 </html>
